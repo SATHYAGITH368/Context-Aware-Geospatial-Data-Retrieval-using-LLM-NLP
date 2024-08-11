@@ -37,32 +37,39 @@ locate point of interest
 ## Brief solution
 
 ## STEP 1:DATA EXTRACTION
-• In this phase, we focus on sourcing public datasets for demo purposes from various websites such as Kaggle and SpaCy (All Country Geo dataset). These datasets come in different shapes and formats (e.g., JSON, CSV).
-• We use Airflow as our ETL (Extract, Transform, Load) tool to source and transform data into the desired format.
-• We have created separate pipelines, or DAGs (Directed Acyclic Graphs) in Airflow terminology, for each data source(airflowdags.py).
-• The sourced data is loaded into the landing zone, where we utilize PostgreSQL as our landing zone database.
+1. In this phase, we focus on sourcing public datasets for demo purposes from various websites such as Kaggle and SpaCy (All Country Geo dataset). These datasets come in different shapes and formats (e.g., JSON, CSV).
+2. We use Airflow as our ETL (Extract, Transform, Load) tool to source and transform data into the desired format.
+3. We have created separate pipelines, or DAGs (Directed Acyclic Graphs) in Airflow terminology, for each data source(airflowdags.py).
+4. The sourced data is loaded into the landing zone, where we utilize PostgreSQL as our landing zone database.
 
 
 
 ## STEP 2:DATA LANDING ZONE
-• PostgreSQL supports PostGIS (Geographical Information Systems).
-• Our future plan is to enhance the user interface to provide an option to transform text to SQL
+1. PostgreSQL supports PostGIS (Geographical Information Systems).
+2. Our future plan is to enhance the user interface to provide an option to transform text to SQL
 and execute spatial queries against PostgreSQL(india.sql).
 
 
 ## STEP 3:FEATURE EXTRACTION
-• After gathering data from various sources, we faced a significant challenge in managing all the collected information. To address this, we sought a platform for feature extraction and feature selection. We needed a centralized solution that would allow us to define, store, and access the features necessary for both training and serving our models.
-• Open-Source Apache Feast perfectly met our requirements. It facilitates tagging source data, defining features, ingesting them, and retrieving features on demand.
-• Essentially, Apache Feast functions as a Catalog Management System for our project.
+1. After gathering data from various sources, we faced a significant challenge in managing all the collected information. To address this, we sought a platform for feature extraction and feature selection. We needed a centralized solution that would allow us to define, store, and access the features necessary for both training and serving our models.
+2. Open-Source Apache Feast perfectly met our requirements. It facilitates tagging source data, defining features, ingesting them, and retrieving features on demand.
+3. Essentially, Apache Feast functions as a Catalog Management System for our project.
 
 
 ## STEP 4:MODEL TRAINING PIPELINE
-• In our project, we aim to provide users with the option to integrate multiple large language models. We will begin with LLama 2 in the initial phase and eventually expand support to include other models.
-• The pipeline will be developed to include Feature Selection, which is the process of reducing the number of input variables when developing models. Reducing the number of input variables can decrease the computational cost of modeling and, in some cases, improve model performance.
-• The pipeline will focus on Feature Selection and the corresponding source data based on the selected features.
-• The process will involve creating text chunks and generating embeddings.
-• Embeddings will be stored in a vector database (FAISS).
-• A retrieval chain will be used for answer retrieval(llama24.py/llamagpu.cpp).
+1. In our project, we aim to provide users with the option to integrate multiple large language models. We will begin with LLama 2 in the initial phase and eventually expand support to include other models.
+2. The pipeline will be developed to include Feature Selection, which is the process of reducing the number of input variables when developing models. Reducing the number of input variables can decrease the computational cost of modeling and, in some cases, improve model performance.
+3. The pipeline will focus on Feature Selection and the corresponding source data based on the selected features.
+4. The process will involve creating text chunks and generating embeddings.
+5. Embeddings will be stored in a vector database (FAISS).
+6. A retrieval chain will be used for answer retrieval.
+We can either use llama24.py, which runs on the CPU and has a slower response time, or llamagpu.py for faster performance. You can download the Llama2 model from this link
+
+https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/tree/main
+
+more references:
+https://docs.llamaindex.ai/en/stable/examples/llm/llama_2_llama_cpp/
+
 
 
 
