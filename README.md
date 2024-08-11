@@ -97,7 +97,7 @@ https://docs.llamaindex.ai/en/stable/examples/llm/llama_2_llama_cpp/
 4. The coordinates extracted from ElasticSearch responses are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.
 
 
-the steps for installation of mordecai for geoparsing is given in this link https://github.com/ahalterman/mordecai3/tree/main
+the steps for installation of mordecai for geoparsing and sample codes is given in this link https://github.com/ahalterman/mordecai3/tree/main
 
 ## GUARDRAILS
 
