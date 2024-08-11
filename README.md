@@ -47,7 +47,53 @@ locate point of interest
 ## STEP 2:DATA LANDING ZONE
 • PostgreSQL supports PostGIS (Geographical Information Systems).
 • Our future plan is to enhance the user interface to provide an option to transform text to SQL
-and execute spatial queries against PostgreSQL.
+and execute spatial queries against PostgreSQL(india.sql).
 
+
+## STEP 3:FEATURE EXTRACTION
+• After gathering data from various sources, we faced a significant challenge in managing all the collected information. To address this, we sought a platform for feature extraction and feature selection. We needed a centralized solution that would allow us to define, store, and access the features necessary for both training and serving our models.
+• Open-Source Apache Feast perfectly met our requirements. It facilitates tagging source data, defining features, ingesting them, and retrieving features on demand.
+• Essentially, Apache Feast functions as a Catalog Management System for our project.
+
+
+## STEP 4:MODEL TRAINING PIPELINE
+• In our project, we aim to provide users with the option to integrate multiple large language models. We will begin with LLama 2 in the initial phase and eventually expand support to include other models.
+• The pipeline will be developed to include Feature Selection, which is the process of reducing the number of input variables when developing models. Reducing the number of input variables can decrease the computational cost of modeling and, in some cases, improve model performance.
+• The pipeline will focus on Feature Selection and the corresponding source data based on the selected features.
+• The process will involve creating text chunks and generating embeddings.
+• Embeddings will be stored in a vector database (FAISS).
+• A retrieval chain will be used for answer retrieval(llama24.py/llamagpu.cpp).
+
+
+
+
+
+## STEP 5(a):User Interface (Usecase-1: Conversational UI)
+• A Conversational User Interface allows users to enter queries related to geospatial content. The front-end propagates these queries to a back-end service.
+• Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
+• Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
+• The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps(streamlit4.py).
+
+
+
+## STEP 5(b): User Interface (Usecase-2: Speech to Text)
+• A Conversational User Interface also allows user to record voice (context related to geospatial content).
+• The application uses a voice-to-text conversion service (Similar to Google speech-to-text) and the output text is propagated to a back-end service.
+• Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
+• Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
+• The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.(streamlit4.py)
 
  
+##  STEP 5(c): User Interface (Usecase-3: Unstructured GeoParsing)
+• Our user interface also allows users to upload text files. Upon uploading, we extract entities such as states, countries, and cities using SpaCy Named Entity Recognition.
+• We leverage Mordecai, which performs two tasks for us: it handles Named Entity Recognition and performs searches against ElasticSearch, where all data is stored. The search utilizes the recognized entities.
+• We have pre-loaded datasets of all countries along with their coordinates into ElasticSearch. This setup can be extended by creating a separate Airflow job to load any input dataset into ElasticSearch.
+• The coordinates extracted from ElasticSearch responses are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.
+
+
+the steps for installation of mordecai for geoparsing is given in this link https://github.com/ahalterman/mordecai3/tree/main
+
+
+
+
+
