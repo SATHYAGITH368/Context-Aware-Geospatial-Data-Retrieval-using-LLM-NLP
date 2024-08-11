@@ -1,5 +1,5 @@
-# ISRO-HACKATHON-PS-12
-Context-Aware Geospatial Data Retrieval using LLM/NLP
+# Context-Aware Geospatial Data Retrieval using LLM/NLP
+
 
 The project aims to develop a context-aware Large Language Model (LLM) system capable of understanding and retrieving geospatial data based on the context provided in user queries. This system will infer implicit information and deliver relevant geospatial data, enhancing the precision and usability of geospatial data retrieval.
 Solution Summary:
