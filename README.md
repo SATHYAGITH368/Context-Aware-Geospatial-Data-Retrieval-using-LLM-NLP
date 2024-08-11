@@ -6,7 +6,7 @@ Solution Summary:
 1. Introduces a new approach for utilizing LLMs in geospatial applications by enabling the model to retain information about spatial objects within an urban area, facilitating its ability to respond to conversational queries about these locations.
 2. Straightforward yet effective framework for integrating geospatial knowledge into a pre-trained LLM, encompassing information about Points of Interest (POIs) and their locations, as well as spatial (proximity) awareness within a specific urban area.
  
-  ## Detailed solution and Approach (250-300 words)
+  ## Detailed solution and Approach 
 3. Provide simplified User Interface for GIS-domain experts to assess the output
 4. Centralized Feature repository to store and manage feature data from multiple sources, ensuring consistency and reusability
 5. Guardrails for our Large Language Models (LLMs) solution helps us in preventing harmful, offensive, or inappropriate content
@@ -15,4 +15,39 @@ Search capabilities offered:
 locate point of interest
 2. Category Search: Category Search helps in finding near by Category (could be near by hospital in a location) and locate point of interest
 3. Type Search: Tell me highly rated places in input Point of interest
+
+  ## Tools and Technology Used 
+1. Adapter Style implementation to work with popular large language models (Phase-1: Integrated LLAMA 2 and OpenAI)
+2. Apache Airflow for Data Integration and Transformation use case
+3. Apache Feast for Feature Store Management
+4. PostgreSQL – Landing or Staging location for all sourced dataset. Laster plan to leverage Text2SQL to query dataset
+5. Streamlit – Interactive User Interface for this project
+6. SpaCy – Named Entity recognition with SpaCy
+7. Elastic Search – Used by Mordecai 3 for Geoparser and Event Geocoder
+
+
+  ## How different is it from any of the other existing ideas?
+1. Our solution is hybrid solution which is designed to work with open-source Llama and pay as we use model using OpenAI
+2. Integrated Voice-to-text search enabling users who are not comfortable in typing
+3. GeoParser capability helps in Geocoding allowing users to type point of interest (i.e. places) and system can identify the location and plot
+4. Structured architecture for end-to-end data journey with proper data cataloging using Feature Store
+5. GuardRail for LLM ensures reliable interaction preventing harmful and inappropriate results
+
+
+## Brief solution
+
+## STEP 1:DATA EXTRACTION
+• In this phase, we focus on sourcing public datasets for demo purposes from various websites such as Kaggle and SpaCy (All Country Geo dataset). These datasets come in different shapes and formats (e.g., JSON, CSV).
+• We use Airflow as our ETL (Extract, Transform, Load) tool to source and transform data into the desired format.
+• We have created separate pipelines, or DAGs (Directed Acyclic Graphs) in Airflow terminology, for each data source(airflowdags.py).
+• The sourced data is loaded into the landing zone, where we utilize PostgreSQL as our landing zone database.
+
+
+
+## STEP 2:DATA LANDING ZONE
+• PostgreSQL supports PostGIS (Geographical Information Systems).
+• Our future plan is to enhance the user interface to provide an option to transform text to SQL
+and execute spatial queries against PostgreSQL.
+
+
  
