@@ -76,29 +76,38 @@ https://docs.llamaindex.ai/en/stable/examples/llm/llama_2_llama_cpp/
 
 
 ## STEP 5(a):User Interface (Usecase-1: Conversational UI)
-• A Conversational User Interface allows users to enter queries related to geospatial content. The front-end propagates these queries to a back-end service.
-• Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
-• Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
-• The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps(streamlit4.py).
+1. A Conversational User Interface allows users to enter queries related to geospatial content. The front-end propagates these queries to a back-end service.
+2. Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
+3. Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
+4. The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps(streamlit4.py).
 
 
 
 ## STEP 5(b): User Interface (Usecase-2: Speech to Text)
-• A Conversational User Interface also allows user to record voice (context related to geospatial content).
-• The application uses a voice-to-text conversion service (Similar to Google speech-to-text) and the output text is propagated to a back-end service.
-• Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
-• Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
-• The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.(streamlit4.py)
+1. A Conversational User Interface also allows user to record voice (context related to geospatial content).
+2. The application uses a voice-to-text conversion service (Similar to Google speech-to-text) and the output text is propagated to a back-end service.
+3. Our back-end service is built using Python Flask, which handles all requests from the user interface. This Python Flask service interacts with LLama 2 or other selected large language models.
+4. Relevant information is retrieved based on the query, potentially utilizing embeddings stored in a vector database (FAISS) for efficient retrieval. Geo-coordinates are extracted from the query results, currently using regex for extraction, with plans to add custom output formatting to Guard Rail in the future.
+5. The extracted coordinates are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.(streamlit4.py)
 
  
 ##  STEP 5(c): User Interface (Usecase-3: Unstructured GeoParsing)
-• Our user interface also allows users to upload text files. Upon uploading, we extract entities such as states, countries, and cities using SpaCy Named Entity Recognition.
-• We leverage Mordecai, which performs two tasks for us: it handles Named Entity Recognition and performs searches against ElasticSearch, where all data is stored. The search utilizes the recognized entities.
-• We have pre-loaded datasets of all countries along with their coordinates into ElasticSearch. This setup can be extended by creating a separate Airflow job to load any input dataset into ElasticSearch.
-• The coordinates extracted from ElasticSearch responses are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.
+1. Our user interface also allows users to upload text files. Upon uploading, we extract entities such as states, countries, and cities using SpaCy Named Entity Recognition.
+2. We leverage Mordecai, which performs two tasks for us: it handles Named Entity Recognition and performs searches against ElasticSearch, where all data is stored. The search utilizes the recognized entities.
+3. We have pre-loaded datasets of all countries along with their coordinates into ElasticSearch. This setup can be extended by creating a separate Airflow job to load any input dataset into ElasticSearch.
+4. The coordinates extracted from ElasticSearch responses are plotted on interactive maps using Folium, a Python library for creating Leaflet maps.
 
 
 the steps for installation of mordecai for geoparsing is given in this link https://github.com/ahalterman/mordecai3/tree/main
+
+## GUARDRAILS
+
+Guardrails
+1. Fast-Check and Validation: Guardrails can ensure that the information provided is accurate and reliable, reducing the chances of misinformation.
+2. Consistency: Guardrails helps in maintaining consistency in responses, which is crucial for applications requiring precise information.
+3. Enhanced User Trust: By ensuring safe and accurate outputs, guardrails enhance user trust in AI systems
+4. Prevention of Harmful Outputs: Guardrails can prevent the generation of harmful, inappropriate, or toxic content.
+
 
 
 
